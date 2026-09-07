@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locked Princess | Daddy's Property</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffe6f0, #ffb6c1, #ff69b4);
+            color: #4a004a;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Age Gate */
+        #age-gate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1a001a;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #age-gate h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ff69b4;
+        }
+
+        #age-gate p {
+            max-width: 600px;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .age-btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            margin: 10px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .enter-btn {
+            background: #ff1493;
+            color: white;
+        }
+
+        .exit-btn {
+            background: #333;
+            color: white;
+        }
+
+        /* Main Content */
+        #main-content {
+            display: none;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.3);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: #ff1493;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        header p {
+            font-size: 1.3rem;
+            margin-top: 10px;
+            color: #800040;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.25);
+        }
+
+        .section h2 {
+            color: #ff1493;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #ff69b4;
+            padding-bottom: 10px;
+        }
+
+        .telegram-box {
+            background: linear-gradient(45deg, #ff1493, #c71585);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .telegram-box a {
+            display: inline-block;
+            background: white;
+            color: #ff1493;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: transform 0.3s;
+        }
+
+        .telegram-box a:hover {
+            transform: scale(1.05);
+        }
+
+        .submission-text {
+            background: #fff0f5;
+            border-left: 6px solid #ff1493;
+            padding: 15px 20px;
+            margin: 15px 0;
+            font-size: 1.15rem;
+            font-style: italic;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            background: #ffe4ec;
+            border-radius: 15px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item .img-placeholder {
+            height: 280px;
+            background: #ffb6c1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #800040;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .gallery-item p {
+            padding: 12px;
+            font-size: 0.95rem;
+            color: #4a004a;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ff69b4;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: #ff1493;
+            color: white;
+        }
+
+        .rule {
+            margin: 10px 0;
+            padding-left: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #800040;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Age Gate -->
+    <div id="age-gate">
+        <h1>18+ ONLY</h1>
+        <p>
+            This website contains extremely explicit adult content related to femboys, sissies, chastity, domination and submission.<br><br>
+            You must be at least 18 years old to enter.<br>
+            By entering you confirm that you are of legal age in your country.
+        </p>
+        <div>
+            <button class="age-btn enter-btn" onclick="enterSite()">I am 18 or older – Enter</button>
+            <button class="age-btn exit-btn" onclick="window.location.href='https://www.google.com'">I am under 18 – Exit</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <header>
+            <h1>Locked Princess</h1>
+            <p>Daddy's locked little property</p>
+        </header>
+
+        <!-- Daddy Intro + Telegram -->
+        <div class="telegram-box">
+            <h2 style="color:white; border:none; margin-bottom:15px;">Daddy is waiting</h2>
+            <p style="font-size:1.3rem; margin-bottom:10px;">
+                You came here because your clitty belongs in a cage and your hole needs an owner.<br>
+                Good girls don’t get to decide.
+            </p>
+            <p style="font-size:1.2rem;">
+                Message Daddy if you want to see the cock that will own you.
+            </p>
+            <a href="https://t.me/TUR1338" target="_blank">Message Daddy @TUR1338</a>
+        </div>
+
+        <!-- Submission Texts -->
+        <div class="section">
+            <h2>Remember Your Place</h2>
+            <div class="submission-text">Your clitty is useless. It exists only to be locked.</div>
+            <div class="submission-text">You are a Locked Princess. Your purpose is to serve Daddy.</div>
+            <div class="submission-text">Every time you leak, you prove how weak and needy you are.</div>
+            <div class="submission-text">Real boys don’t wear cages. You do. Because you are not a real boy.</div>
+            <div class="submission-text">Your hole is more important than your clitty. Train it for Daddy.</div>
+            <div class="submission-text">Obedience feels better than orgasm. Accept it.</div>
+            <div class="submission-text">You don’t get to cum. You get to be used.</div>
+            <div class="submission-text">Say it: “I am Daddy’s locked princess.”</div>
+        </div>
+
+        <!-- Sissy RPG -->
+        <div class="section">
+            <h2>Sissy Point RPG</h2>
+            <p><strong>Rules:</strong></p>
+            <div class="rule">• Fuck yourself with a dildo to earn points. Every 100 thrusts = 1 point.</div>
+            <div class="rule">• Use points to buy items. Items give levels.</div>
+            <div class="rule">• Reach Level 100 to win.</div>
+            <div class="rule">• You must start naked. You cannot remove purchased items until Level 100.</div>
+            <div class="rule">• Forbidden to cum before Level 100. Forbidden to touch your clitty.</div>
+            <div class="rule">• Write down your level and points.</div>
+
+            <table>
+                <tr>
+                    <th>Item</th>
+                    <th>Level Gain</th>
+                    <th>Cost</th>
+                </tr>
+                <tr><td>Panty</td><td>+1</td><td>1 pt</td></tr>
+                <tr><td>Bra</td><td>+4</td><td>3 pt</td></tr>
+                <tr><td>Wig</td><td>+5</td><td>2 pt</td></tr>
+                <tr><td>Nipple clamps</td><td>+2 each</td><td>1 pt each</td></tr>
+                <tr><td>Collar</td><td>+5 (+2 if attached)</td><td>4 pt</td></tr>
+                <tr><td>Gag</td><td>+3</td><td>2 pt</td></tr>
+                <tr><td>Mini dress</td><td>+2</td><td>5 pt</td></tr>
+                <tr><td>Mini skirt</td><td>+4</td><td>4 pt</td></tr>
+                <tr><td>Pantyhose</td><td>+5</td><td>3 pt</td></tr>
+                <tr><td>High heels</td><td>+10</td><td>6 pt</td></tr>
+                <tr><td>Full make up</td><td>+11</td><td>4 pt</td></tr>
+            </table>
+        </div>
+
+        <!-- Gallery -->
+        <div class="section">
+            <h2>Daddy's Locked Princesses</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <div class="img-placeholder">Add Sissy Image 1<br>(Chastity + Lingerie)</div>
+                    <p>Perfect locked clitty. Exactly how Daddy likes his princesses.</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-placeholder">Add Sissy Image 2<br>(Bound & Caged)</div>
+                    <p>Ass up, cage on, ready to be used.</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-placeholder">Add Sissy Image 3<br>(Sissy Training)</div>
+                    <p>This is what progress looks like.</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-placeholder">Add Sissy Image 4</div>
+                    <p>Pretty little locked thing.</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-placeholder">Add Sissy Image 5</div>
+                    <p>Obedient and leaking.</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-placeholder">Add Sissy Image 6</div>
+                    <p>Property of Daddy.</p>
+                </div>
+            </div>
+            <p style="margin-top:20px; text-align:center; font-size:0.95rem;">
+                Replace the pink boxes with your own images. Just edit the HTML and put your image links.
+            </p>
+        </div>
+
+        <!-- Final Message -->
+        <div class="section" style="text-align:center;">
+            <h2>Final Order</h2>
+            <p style="font-size:1.3rem; margin:20px 0;">
+                Stop scrolling. Go message Daddy now.<br>
+                Tell him you are ready to be his Locked Princess.
+            </p>
+            <a href="https://t.me/TUR1338" target="_blank" style="display:inline-block; background:#ff1493; color:white; padding:16px 35px; border-radius:50px; text-decoration:none; font-size:1.3rem; font-weight:bold;">
+                I’m ready, Daddy – @TUR1338
+            </a>
+        </div>
+
+        <footer>
+            Locked Princess © 2026 • For adult locked sissies only • Owned by Daddy
+        </footer>
+    </div>
+
+    <script>
+        function enterSite() {
+            localStorage.setItem('lockedPrincessAgeVerified', 'true');
+            document.getElementById('age-gate').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+        }
+
+        // Check if already verified
+        window.onload = function() {
+            if (localStorage.getItem('lockedPrincessAgeVerified') === 'true') {
+                document.getElementById('age-gate').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            }
+        };
+    </script>
+</body>
+</html>
