@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Locked Princess – Daddy Owns You</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Playfair+Display:wght@700&display=swap');
+
+  :root {
+    --pink: #ff69b4;
+    --soft-pink: #ffe4f0;
+    --dark: #1a0a12;
+    --accent: #ff1493;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(135deg, #1a0a12 0%, #3d0a25 100%);
+    color: #fff;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* AGE GATE */
+  #age-gate {
+    position: fixed;
+    inset: 0;
+    background: #0d0510;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    text-align: center;
+    padding: 20px;
+  }
+  #age-gate h1 { font-size: 2.8rem; color: var(--pink); margin-bottom: 20px; }
+  #age-gate p { max-width: 500px; margin-bottom: 30px; font-size: 1.2rem; }
+  .age-btn {
+    background: var(--pink);
+    color: #fff;
+    border: none;
+    padding: 16px 40px;
+    font-size: 1.3rem;
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 10px;
+    font-weight: 700;
+    transition: 0.3s;
+  }
+  .age-btn:hover { background: #ff1493; transform: scale(1.05); }
+  .age-btn.no { background: #444; }
+
+  /* MAIN SITE */
+  .hidden { display: none !important; }
+
+  header {
+    background: rgba(0,0,0,0.7);
+    padding: 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--pink);
+    letter-spacing: 3px;
+  }
+  header p { color: #ffb6c1; margin-top: 5px; }
+
+  .telegram-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, #ff1493, #ff69b4);
+    color: white;
+    padding: 18px 45px;
+    border-radius: 60px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-decoration: none;
+    margin: 25px 0;
+    box-shadow: 0 0 30px rgba(255,20,147,0.6);
+    transition: 0.3s;
+    animation: pulse 2s infinite;
+  }
+  .telegram-btn:hover { transform: scale(1.08); }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(255,20,147,0.5); }
+    50% { box-shadow: 0 0 40px rgba(255,20,147,0.9); }
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    padding: 15px;
+    background: rgba(255,105,180,0.1);
+  }
+  nav a {
+    color: #ffb6c1;
+    text-decoration: none;
+    padding: 8px 18px;
+    border: 1px solid var(--pink);
+    border-radius: 30px;
+    font-size: 0.95rem;
+    transition: 0.3s;
+  }
+  nav a:hover { background: var(--pink); color: white; }
+
+  section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    border: 1px solid rgba(255,105,180,0.3);
+  }
+  section h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--pink);
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .dominant-text {
+    font-size: 1.25rem;
+    text-align: center;
+    margin: 25px 0;
+    color: #ffc0cb;
+  }
+
+  /* DEGRADATION TEXTS */
+  .degrade-box {
+    background: rgba(255,20,147,0.15);
+    border-left: 5px solid var(--pink);
+    padding: 18px 25px;
+    margin: 15px 0;
+    border-radius: 0 12px 12px 0;
+    font-size: 1.15rem;
+  }
+
+  /* GAMES */
+  .game-box {
+    background: #2a0f1f;
+    padding: 25px;
+    border-radius: 15px;
+    margin: 20px 0;
+  }
+  .roulette-btn, .rpg-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 40px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin: 10px 5px;
+    font-weight: 600;
+  }
+  .result {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 12px;
+    font-size: 1.2rem;
+    min-height: 60px;
+  }
+
+  /* RPG ITEMS */
+  .item-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .item {
+    background: rgba(255,105,180,0.2);
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .item:hover { background: rgba(255,105,180,0.4); }
+  .item.owned { border: 2px solid #00ff88; }
+
+  footer {
+    text-align: center;
+    padding: 40px;
+    color: #ff69b4;
+    font-size: 0.9rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- AGE GATE -->
+<div id="age-gate">
+  <h1>🔒 LOCKED PRINCESS</h1>
+  <p>This site is for adults only.<br>
+  You must be 18+ and willing to surrender completely to Daddy.</p>
+  <p style="color:#ff69b4;font-weight:600;">By entering you accept that you are a locked sissy who exists to serve.</p>
+  <div>
+    <button class="age-btn" onclick="enterSite()">I am 18+ and I belong to Daddy</button>
+    <button class="age-btn no" onclick="window.location.href='https://google.com'">I am not ready</button>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="main-site" class="hidden">
+  <header>
+    <h1>LOCKED PRINCESS</h1>
+    <p>Daddy’s property • Good boys don’t get to decide</p>
+    <a href="https://t.me/TUR1338" target="_blank" class="telegram-btn">
+      Message Daddy on Telegram if you want to see the cock that owns you
+    </a>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#rpg">Sissy RPG</a>
+    <a href="#fap-roulette">Fap Roulette</a>
+    <a href="#training">Anal Training</a>
+    <a href="#chastity">Chastity Challenge</a>
+    <a href="#texts">Submission Texts</a>
+    <a href="#rules">Daddy’s Rules</a>
+    <a href="#gallery">Gallery</a>
+  </nav>
+
+  <!-- HOME -->
+  <section id="home">
+    <h2>Welcome home, locked princess</h2>
+    <p class="dominant-text">
+      You don’t get to choose anymore.<br>
+      Your clit is locked. Your hole is training. Your mind belongs to Daddy.<br>
+      Good boys don’t get to decide.
+    </p>
+    <p class="dominant-text" style="font-size:1.4rem;color:#ff69b4;">
+      Message Daddy now if you want to see what will lock and use you.
+    </p>
+    <a href="https://t.me/TUR1338" target="_blank" class="telegram-btn">Show me your cock / Own me</a>
+  </section>
+
+  <!-- SISSY RPG -->
+  <section id="rpg">
+    <h2>Sissy Game RPG</h2>
+    <div class="game-box">
+      <p><strong>Rules:</strong></p>
+      <ul style="margin:15px 0 15px 20px;">
+        <li>Every 100 thrusts with a dildo in your ass = 1 point</li>
+        <li>Use points to buy items. Every item gives levels.</li>
+        <li>Reach Level 100 to win.</li>
+        <li>Start naked. You cannot remove any purchased item until Level 100.</li>
+        <li>It is forbidden to cum or touch what you used to call a dick before Level 100.</li>
+        <li>When you reach Level 100 → do the Winner’s Roulette.</li>
+      </ul>
+
+      <p>Your current Level: <span id="level">0</span> | Points: <span id="points">0</span></p>
+      <button class="rpg-btn" onclick="addThrusts()">I did 100 thrusts (+1 pt)</button>
+      <button class="rpg-btn" onclick="resetRPG()">Reset Progress</button>
+
+      <h3 style="margin-top:25px;color:#ff69b4;">Buy Items</h3>
+      <div class="item-grid" id="item-list"></div>
+
+      <div class="result" id="rpg-result"></div>
+    </div>
+  </section>
+
+  <!-- FAP ROULETTE -->
+  <section id="fap-roulette">
+    <h2>Sissy Anal Loving Fap Roulette</h2>
+    <div class="game-box">
+      <p>Spin each category (they are cumulative).</p>
+      <button class="roulette-btn" onclick="spinFap('W')">Spin Preparation (W)</button>
+      <button class="roulette-btn" onclick="spinFap('X')">Spin Clothes (X)</button>
+      <button class="roulette-btn" onclick="spinFap('Y')">Spin Anal (Y)</button>
+      <button class="roulette-btn" onclick="spinFap('Z')">Spin Cum (Z)</button>
+      <div class="result" id="fap-result">Your tasks will appear here…</div>
+    </div>
+  </section>
+
+  <!-- ANAL TRAINING GAME -->
+  <section id="training">
+    <h2>The SISSY Anal Training Game</h2>
+    <div class="game-box">
+      <p>A cute beginner-friendly roulette. Play 3 rounds. Collect stars.</p>
+      <button class="roulette-btn" onclick="spinTraining(1)">Round 1 – Warm-Up</button>
+      <button class="roulette-btn" onclick="spinTraining(2)">Round 2 – Anal Training</button>
+      <button class="roulette-btn" onclick="spinTraining(3)">Round 3 – Sissy Reward</button>
+      <div class="result" id="training-result">Your tasks will appear here…</div>
+    </div>
+  </section>
+
+  <!-- CHASTITY CHALLENGE -->
+  <section id="chastity">
+    <h2>Chastity Challenge: Earn Your Freedom</h2>
+    <div class="game-box">
+      <button class="roulette-btn" onclick="spinChastity('sentence')">Roll Chastity Sentence</button>
+      <button class="roulette-btn" onclick="spinChastity('daily')">Roll Daily Task</button>
+      <button class="roulette-btn" onclick="spinChastity('extra')">Roll Extra Credit</button>
+      <button class="roulette-btn" onclick="spinChastity('release')">Roll Release</button>
+      <div class="result" id="chastity-result">Your challenge will appear here…</div>
+    </div>
+  </section>
+
+  <!-- SUBMISSION TEXTS -->
+  <section id="texts">
+    <h2>Submission & Degradation Texts</h2>
+    <p class="dominant-text">Read these out loud. Repeat until your clit pulses and your mind softens.</p>
+
+    <div class="degrade-box">You are just a locked hole for Daddy’s use.</div>
+    <div class="degrade-box">Your tiny clit is worthless. Keep it caged.</div>
+    <div class="degrade-box">The only pleasure you are allowed is serving your Owner.</div>
+    <div class="degrade-box">Submission is your real identity.</div>
+    <div class="degrade-box">Good boys don’t get to decide. Daddy decides.</div>
+    <div class="degrade-box">Your ass exists to be trained and filled.</div>
+    <div class="degrade-box">You are Daddy’s locked princess, nothing more.</div>
+    <div class="degrade-box">Every thrust makes you more owned.</div>
+    <div class="degrade-box">Your brain is soft pink and ready to obey.</div>
+    <div class="degrade-box">You don’t need a dick. You need a cage and a dildo.</div>
+    <div class="degrade-box">Say it: “I am a locked sissy who lives to please Daddy.”</div>
+    <div class="degrade-box">Your hole is more important than your clit.</div>
+    <div class="degrade-box">Stay locked. Stay pretty. Stay useful.</div>
+    <div class="degrade-box">Daddy’s cock is the only one that matters.</div>
+    <div class="degrade-box">You are a bitchboi princess. Act like it.</div>
+    <div class="degrade-box">Cumming without permission is betrayal.</div>
+    <div class="degrade-box">Your body is for display and for use.</div>
+    <div class="degrade-box">Obey. Kneel. Open. Thank.</div>
+    <div class="degrade-box">You feel better when you are controlled.</div>
+    <div class="degrade-box">This is who you really are.</div>
+    <!-- Add as many as you want – these are starter ones -->
+  </section>
+
+  <!-- DADDY’S RULES -->
+  <section id="rules">
+    <h2>Daddy’s Rules & Daily Tasks</h2>
+    <div class="degrade-box">1. Your clit stays locked unless Daddy says otherwise.</div>
+    <div class="degrade-box">2. You will edge only when ordered and never finish without permission.</div>
+    <div class="degrade-box">3. Every night you will write “I belong to Daddy” 20 times.</div>
+    <div class="degrade-box">4. Your hole must be plugged or trained daily.</div>
+    <div class="degrade-box">5. You will message Daddy when you complete tasks.</div>
+    <div class="degrade-box">6. Makeup, panties or plug while doing chores is encouraged.</div>
+    <div class="degrade-box">7. You will never remove the cage without explicit permission.</div>
+    <div class="degrade-box">8. Good girls get rewards. Bad boys get longer locks.</div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <p class="dominant-text">Place for locked, plugged, made-up sissy photos with dominant captions.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:15px;margin-top:20px;">
+      <div style="background:#3a1a2a;height:220px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#ff69b4;">Locked clit photo + caption</div>
+      <div style="background:#3a1a2a;height:220px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#ff69b4;">Plugged hole + caption</div>
+      <div style="background:#3a1a2a;height:220px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#ff69b4;">Full sissy look + caption</div>
+      <div style="background:#3a1a2a;height:220px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#ff69b4;">Kneeling for Daddy + caption</div>
+    </div>
+  </section>
+
+  <footer>
+    Locked Princess © Daddy’s property<br>
+    Message @TUR1338 if you want to be owned properly.
+  </footer>
+</div>
+
+<script>
+  // Age gate
+  function enterSite() {
+    document.getElementById('age-gate').classList.add('hidden');
+    document.getElementById('main-site').classList.remove('hidden');
+  }
+
+  // ===== SISSY RPG =====
+  let points = 0;
+  let level = 0;
+  const items = [
+    {name:"Panty", cost:1, lvl:1},
+    {name:"Bra", cost:3, lvl:4},
+    {name:"Wig", cost:2, lvl:5},
+    {name:"Nipple clamps", cost:1, lvl:2},
+    {name:"Collar", cost:4, lvl:5},
+    {name:"Gag", cost:2, lvl:3},
+    {name:"Mini dress", cost:5, lvl:2},
+    {name:"Mini skirt", cost:4, lvl:4},
+    {name:"High heels", cost:6, lvl:10},
+    {name:"Pantyhose", cost:3, lvl:5},
+    {name:"Full makeup", cost:4, lvl:11},
+    {name:"Sounding", cost:2, lvl:7},
+    {name:"Painting nails", cost:1, lvl:1}
+  ];
+  let owned = [];
+
+  function renderItems() {
+    const list = document.getElementById('item-list');
+    list.innerHTML = '';
+    items.forEach((item, i) => {
+      const div = document.createElement('div');
+      div.className = 'item' + (owned.includes(i) ? ' owned' : '');
+      div.innerHTML = `<strong>${item.name}</strong><br>+${item.lvl} level<br>Cost: ${item.cost} pt`;
+      div.onclick = () => buyItem(i);
+      list.appendChild(div);
+    });
+  }
+
+  function addThrusts() {
+    points++;
+    document.getElementById('points').textContent = points;
+    document.getElementById('rpg-result').textContent = "Good girl. +1 point for 100 thrusts.";
+  }
+
+  function buyItem(i) {
+    if (owned.includes(i)) return;
+    if (points >= items[i].cost) {
+      points -= items[i].cost;
+      level += items[i].lvl;
+      owned.push(i);
+      document.getElementById('points').textContent = points;
+      document.getElementById('level').textContent = level;
+      renderItems();
+      document.getElementById('rpg-result').textContent = `You bought ${items[i].name}! Level is now ${level}.`;
+      if (level >= 100) {
+        document.getElementById('rpg-result').innerHTML += `<br><strong style="color:#ff69b4;">LEVEL 100 REACHED! Do the Winner’s Roulette now.</strong>`;
+      }
+    } else {
+      document.getElementById('rpg-result').textContent = "Not enough points, locked princess.";
+    }
+  }
+
+  function resetRPG() {
+    points = 0; level = 0; owned = [];
+    document.getElementById('points').textContent = 0;
+    document.getElementById('level').textContent = 0;
+    renderItems();
+  }
+  renderItems();
+
+  // ===== FAP ROULETTE =====
+  const fapData = {
+    W: ["Have an enema","Shave ass","Shave pubic hair","Shave whole body","Wear a Cock Ring","Wig","Use Lipstick","Eyeliner","Suck a Dildo for 5 minutes","You choose"],
+    X: ["Nothing","Panties","Thong","Bra","Stuff Bra","Any top","Skirt","Dress","Tights/Stockings","Garter Belt"],
+    Y: ["Buttplug 30 min","No touching cock","Small dildo 5 minutes","Medium Dildo 5 minutes","Large dildo 5 minutes","Cowgirl on toilet seat 5 min","Cock pointing at face 5 min","Large dildo pounding 5 min","No anal","You choose"],
+    Z: ["On belly","On face, mouth closed","On face mouth open","On floor, lick it up","On a glass cup, drink it","On hand, clean it on face","On a dildo, blowjob 2 minutes","On dildo, insert in ass","You choose","Cum only with anal, no touching cock"]
+  };
+
+  function spinFap(cat) {
+    const options = fapData[cat];
+    const result = options[Math.floor(Math.random()*options.length)];
+    document.getElementById('fap-result').innerHTML += `<br><strong>${cat}:</strong> ${result}`;
+  }
+
+  // ===== TRAINING GAME =====
+  const trainingData = {
+    1: ["Edge for 5 minutes while looking at sissy porn","Put on panties and edge","Wear a plug while watching porn","Stroke only your nipples for 5 min","Write “I am a locked sissy” 15 times","Finger your hole for 3 minutes","Put on lipstick and kiss the mirror","Wear a bra and pose","Listen to sissy hypno for 10 min","You choose a soft warm-up"],
+    2: ["Small dildo 50 thrusts","Medium dildo 80 thrusts","Large dildo 40 thrusts","Plug for 20 minutes while doing chores","Ride dildo cowgirl 5 minutes","Doggy style pounding 60 thrusts","Hold plug and edge","Deep thrusts only for 3 minutes","Train with bigger size than last time","You choose training intensity"],
+    3: ["Full sissy outfit + photos","Makeup + locked photo for Daddy","Cum from anal only","Eat your cum from the floor","Wear heels and plug for 1 hour","Write a thank you letter to Daddy","Watch sissy porn until you leak","Stay plugged overnight","Post a locked selfie (private)","You choose your reward"]
+  };
+
+  function spinTraining(round) {
+    const options = trainingData[round];
+    const result = options[Math.floor(Math.random()*options.length)];
+    document.getElementById('training-result').innerHTML = `<strong>Round ${round}:</strong> ${result}`;
+  }
+
+  // ===== CHASTITY CHALLENGE =====
+  const chastityData = {
+    sentence: ["3 days locked","5 days locked","7 days locked","10 days locked","14 days locked","21 days locked","Until Daddy unlocks you"],
+    daily: ["Nude yoga video – get nice & flexible","Housewife – complete a chore wearing only bra & panties","Lollipop – lick your favorite dildo for 15 min","Throat Queen – deepthroat dildo for 15 min","Plugged – plug your ass for 1 hour","Anal Queen – ride your favorite dildo 15 min","Write “I am Daddy’s locked toy” 30 times","Edge 5 times without cumming"],
+    extra: ["Beauty Routine – full shave + nails + skincare","Girly Pop – create a sissy playlist","Cock Slut – write a phrase on your body","Sissy Fantasy journal","Blowjob Expert practice","Fucked Like a Girl video session"],
+    release: ["Freedom – good boy, you may unlock","Clitty Fun – 1 day of free play then re-lock","Sissygasm only – cum from anal","Denied – no orgasm, re-roll or stay locked"]
+  };
+
+  function spinChastity(type) {
+    const options = chastityData[type];
+    const result = options[Math.floor(Math.random()*options.length)];
+    document.getElementById('chastity-result').innerHTML = `<strong>${type.toUpperCase()}:</strong> ${result}`;
+  }
+</script>
+</body>
+</html>
